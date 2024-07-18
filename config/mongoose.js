@@ -1,15 +1,18 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://singhshreyash466:Shreyash@790501@cluster0.cd9nwhd.mongodb.net/issue_Tracker');
+const url = "mongodb+srv://singhshreyash466:Shreyash%40790501@cluster0.cd9nwhd.mongodb.net/issue_Tracker";
 
-const db = mongoose.connect;
+const connectUsingMongoose = async () => {
+    try {
+        await mongoose.connect(url, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log("MongoDB connected using mongoose");
+    } catch (err) {
+        console.error("MongoDB connection error:", err);
+        throw err; // Optionally re-throw the error to handle it elsewhere
+    }
+};
 
-db.on('error', console.error.bind(console, "Error connecting to MongoDB"));
-
-
-db.once('open', function(){
-    console.log('Connected to Database Successfully :: MongoDB');
-});
-
-
-module.exports = db;
+module.exports = connectUsingMongoose; // Corrected export statement
