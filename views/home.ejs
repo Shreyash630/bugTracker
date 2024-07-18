@@ -1,0 +1,32 @@
+
+        <link rel="stylesheet" href = "/css/home.css">
+
+        <section id="project-list">
+             <div id="home-header">
+        
+                <div id = "total-projects" > Total : <%= projects.length%></div>
+                     <h3>List of Projects</h3>
+                     <!-- this will redirect to create project page -->
+                     <form action="/projects/create_project_page">
+                        <button id="add-project-btn">ADD NEW</button>
+                    </form>
+             </div>
+        
+        
+             <% for(project of projects){ %> 
+                <a href="/projects/projects_details/<%= project.id%>">
+                    <div id="project-container">
+                        <p id="project-name"><span><%= project.projectName %></span><button id="open-project-btn">Issues: <%= project.issues.length%></button> </p>
+                            <p id="auther-name">Auther :  <span><%= project.projectAuthor %></span></p> 
+                            <div id="description">
+                                <h5>Description</h5>
+                                <p id="description-content">
+                                        <%= project.projectDescription%>
+                                </p>
+                            </div>
+                    </div> 
+                </a>    
+               <% } %>    
+        </section>
+        
+        
